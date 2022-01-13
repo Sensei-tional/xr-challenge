@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Win : MonoBehaviour
 {
     public bool WinToggle = false;
-    public GameObject FinishSpace;
+    public GameObject FinishSpace, WinText;
+    private float SpawnHiX;
     // Start is called before the first frame update
     void Start()
     {
-        
+        WinText.GetComponent<TextMeshProUGUI>().text = "";
     }
 
     // Update is called once per frame
@@ -22,12 +25,14 @@ public class Win : MonoBehaviour
         }
     }
 
+    // Complete object
     public void WinCon()
     {
-        Debug.Log("All Stars Collected. You Win");
+        WinText.GetComponent<TextMeshProUGUI>().text = "You have collected all stars! Move to the red cube!";
         Vector3 spawnPos = new Vector3(3.15f, 0.5f, 0f);
         Instantiate(FinishSpace, spawnPos, FinishSpace.transform.rotation);
         WinToggle = true;
+
     }
 
 }
