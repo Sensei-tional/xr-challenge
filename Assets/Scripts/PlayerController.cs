@@ -9,15 +9,21 @@ public class PlayerController : MonoBehaviour
     public float Speed;
     public float StrafeInput, ForwardInput;
     public int Score = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Player Move Initialized");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxis("Jump") > 0 && Input.GetAxis("Jump") < 0.0001)
+            if (transform.position.y < 0.6f)
+            {
+                Debug.Log("Jump");
+            }
     }
 
     void FixedUpdate()

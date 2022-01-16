@@ -8,7 +8,6 @@ public class Win : MonoBehaviour
 {
     public bool WinToggle = false;
     public GameObject FinishSpace, WinText;
-    private float SpawnHiX;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +31,6 @@ public class Win : MonoBehaviour
         Vector3 spawnPos = new Vector3(3.15f, 0.5f, 0f);
         Instantiate(FinishSpace, spawnPos, FinishSpace.transform.rotation);
         WinToggle = true;
-
     }
 
 }

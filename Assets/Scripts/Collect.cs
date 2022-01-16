@@ -18,7 +18,7 @@ public class Collect : MonoBehaviour
         Scoring.Score += 100;
         GetComponent<Pickup>().GetPickedUp();
         Destroy(GetComponent<CapsuleCollider>());
-        //Delays the destruction of pickup by 3 seconds
+        //Delays the destruction of pickup by 1 second
         Invoke("DestroyPickup", 1);
     }
 
