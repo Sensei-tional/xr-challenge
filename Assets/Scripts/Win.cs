@@ -27,7 +27,7 @@ public class Win : MonoBehaviour
     // Complete object
     public void WinCon()
     {
-        WinText.GetComponent<TextMeshProUGUI>().text = "You have collected all stars! Move to the red cube!";
+        WinText.GetComponent<TextMeshProUGUI>().text = "You have collected all stars! Move to the green cube!";
         Vector3 spawnPos = new Vector3(3.15f, 0.5f, 0f);
         Instantiate(FinishSpace, spawnPos, FinishSpace.transform.rotation);
         WinToggle = true;

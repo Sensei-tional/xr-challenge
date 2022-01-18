@@ -5,33 +5,79 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [System.Serializable]
+    public class MovementFW
+    {
+        public float Speed = 10;
+        public float JumpForce = 25;
+        public float isGrounded = 0.6f;
+        public LayerMask ground;
+    }
+
+    [System.Serializable]
+    public class InputFW
+    { 
+        public float StrafeInput, ForwardInput, JumpInput;
+    }
+
+    public MovementFW MoveVars = new MovementFW();
+    public InputFW InputVars = new InputFW();
+
+
     // Speed variable along with inputs for WASD for movement
-    public float Speed;
-    public float StrafeInput, ForwardInput;
     public int Score = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Jump") > 0 && Input.GetAxis("Jump") < 0.0001)
-            if (transform.position.y < 0.6f)
-            {
-                Debug.Log("Jump");
-            }
+
     }
 
     void FixedUpdate()
     {
-        StrafeInput = Input.GetAxis("Horizontal");
-        ForwardInput = Input.GetAxis("Vertical");
+        Move();
+        Jump();
+    }
 
-        transform.Translate(Vector3.forward * Time.deltaTime * Speed * ForwardInput);
-        transform.Translate(Vector3.right * Time.deltaTime * Speed * StrafeInput);
+    // Checks whether the player is Grounded
+    bool Grounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, MoveVars.isGrounded, MoveVars.ground);
+    }
+
+    // Handles player movement
+    void Move()
+    {
+        InputVars.StrafeInput = Input.GetAxis("Horizontal");
+        InputVars.ForwardInput = Input.GetAxis("Vertical");
+
+        transform.Translate(Vector3.forward * Time.deltaTime * MoveVars.Speed * InputVars.ForwardInput);
+        transform.Translate(Vector3.right * Time.deltaTime * MoveVars.Speed * InputVars.StrafeInput);
+    }
+
+    // Handles player jumping
+    void Jump()
+    {
+        InputVars.JumpInput = Input.GetAxisRaw("Jump");
+
+        if (InputVars.JumpInput > 0 && Grounded())
+        {
+            Debug.Log("Can Jump");
+            GetComponent<Rigidbody>().AddForce(Vector3.up * MoveVars.JumpForce);
+        }
+        else if (InputVars.JumpInput == 0 && Grounded())
+        {
+            Debug.Log("Static");
+        }
+        else
+        {
+            Debug.Log("Can't Jump");
+        }
     }
 }

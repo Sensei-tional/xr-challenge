@@ -8,7 +8,7 @@ public class Pause : MonoBehaviour
 {
     private bool IsPaused;
     public GameObject PauseMenu, GameUI;
-    public Button ResumeButton, QuitButton, TitleButton;
+    public Button ResumeButton, TitleButton, QuitButton;
     
     // Start is called before the first frame update
     void Start()
@@ -16,10 +16,11 @@ public class Pause : MonoBehaviour
         GameUI.SetActive(true);
         PauseMenu.SetActive(false);
         IsPaused = false;
+
+        // Listeners for each button in start menu
         ResumeButton.onClick.AddListener(ResumePlay);
         TitleButton.onClick.AddListener(MainMenu);
         QuitButton.onClick.AddListener(QuitGame);
-        
     }
 
     // Update is called once per frame
@@ -28,6 +29,7 @@ public class Pause : MonoBehaviour
         PauseGame();
     }
 
+    // Toggle PauseGame
     void PauseGame()
     {
         if (Input.GetButtonDown("Cancel") && IsPaused == false)
@@ -48,20 +50,22 @@ public class Pause : MonoBehaviour
         }
     }
 
+    // What happens when play is resumed
     void ResumePlay()
     {
+        IsPaused = false;
         GameUI.SetActive(true);
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
-        IsPaused = false;
-        Debug.Log("Game Paused");
     }
 
+    // what happens when player wants to return to menu
     void MainMenu()
     {
         SceneManager.LoadScene("Title");
     }
 
+    //What happens when player wants to quit game
     void QuitGame()
     {
         Application.Quit();

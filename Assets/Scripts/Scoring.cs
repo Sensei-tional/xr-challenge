@@ -9,7 +9,7 @@ public class Scoring : MonoBehaviour
     public GameObject ScoreText, ScoreCountText;
     public static int Score;
 
-    // Handles score update on screen
+    // Handles score update and objectives displayed on UI
     void Update()
     {
         ScoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + Score;

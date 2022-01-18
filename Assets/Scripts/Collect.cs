@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collect : MonoBehaviour
 {
     public AudioSource CollectSound;
+    public GameObject PickUp;
     // Sets Score to 0
     void Start()
     {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class End : MonoBehaviour
 {
@@ -16,13 +17,24 @@ public class End : MonoBehaviour
         
     }
 
+    // Runs NextLevel on collision
     void OnTriggerEnter(Collider other)
     {
-        QuitGame();
+        NextLevel();
     }
 
-    public void QuitGame()
+    // Loads next Level
+    public void NextLevel()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        string Level = SceneManager.GetActiveScene().name;
+        if (Level == "Main")
+        {
+            SceneManager.LoadScene("Level2");
+        }
+        else if (Level == "Level2")
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+            Application.Quit();
+        }
     }
 }
