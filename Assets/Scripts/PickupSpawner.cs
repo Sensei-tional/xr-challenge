@@ -6,7 +6,6 @@ public class PickupSpawner : MonoBehaviour
 {
     public GameObject PickUp;
     private int SpawnLoop = 0;
-    private bool PickupCreated = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class PickupSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (SpawnLoop < 5 && PickupCreated == false)
+        while (SpawnLoop < 5)
         {
             SpawnPickup();
             SpawnLoop++;
@@ -28,6 +27,5 @@ public class PickupSpawner : MonoBehaviour
     {
         Vector3 SpawnLoc = new Vector3(Random.Range(-3.69f, 3.7f), 0f, Random.Range(3.77f, -3.63f));
         Instantiate(PickUp, SpawnLoc, PickUp.transform.rotation);
-        PickupCreated = true;
     }
 }
