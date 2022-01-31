@@ -16,7 +16,10 @@ public class Collect : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         CollectSound.Play();
-        Scoring.Score += 100;
+        // Previous Script
+        //  Score.Score += 100;
+
+        Scoring.Score += PickUp.GetComponent<Pickup>().GetPickedUp();
         GetComponent<Pickup>().GetPickedUp();
         Destroy(GetComponent<CapsuleCollider>());
         //Delays the destruction of pickup by 1 second

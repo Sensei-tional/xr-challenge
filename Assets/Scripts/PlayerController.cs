@@ -23,10 +23,6 @@ public class PlayerController : MonoBehaviour
     public MovementFW MoveVars = new MovementFW();
     public InputFW InputVars = new InputFW();
 
-
-    // Speed variable along with inputs for WASD for movement
-    public int Score = 0;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +32,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        for (int i = 0; i < 20; i++)
+        {
+            if (Input.GetKeyDown("joystick 1 button " + i))
+            {
+                print("joystick 1 button " + i);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -68,16 +70,16 @@ public class PlayerController : MonoBehaviour
 
         if (InputVars.JumpInput > 0 && Grounded())
         {
-            Debug.Log("Can Jump");
+            //Debug.Log("Can Jump");
             GetComponent<Rigidbody>().AddForce(Vector3.up * MoveVars.JumpForce);
         }
         else if (InputVars.JumpInput == 0 && Grounded())
         {
-            Debug.Log("Static");
+            //Debug.Log("Static");
         }
         else
         {
-            Debug.Log("Can't Jump");
+            //Debug.Log("Can't Jump");
         }
     }
 }
