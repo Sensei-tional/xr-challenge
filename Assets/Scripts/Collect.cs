@@ -6,9 +6,9 @@ public class Collect : MonoBehaviour
 {
     public AudioSource CollectSound;
     public GameObject PickUp;
-    // Sets Score to 0
     void Start()
     {
+        // Sets Score to 0
         Scoring.Score = 0;
     }
 
@@ -16,9 +16,6 @@ public class Collect : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         CollectSound.Play();
-        // Previous Script
-        //  Score.Score += 100;
-
         Scoring.Score += PickUp.GetComponent<Pickup>().GetPickedUp();
         GetComponent<Pickup>().GetPickedUp();
         Destroy(GetComponent<CapsuleCollider>());
